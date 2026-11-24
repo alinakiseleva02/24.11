@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Комментарии{% endblock title %}
+{% block main_content %}
+<h2>Комментарии к заявкам</h2>
+    {% for request in requests}
+        <p>Заявка #{{ request.id }}</p>
+        <p>Комментарий: {{ request.comment }}</p>
+        <h4>Обратная связь:</h4>
+        <ul>
+            {% for feedback in request.feedbacks.all %}
+              <li>{{ feedback.text}}</li>
+            {% empty %}
+              <li>Нет комментариев</li>
+            {% endfor %}
+        </ul>
+{% endfor %}
+{% endblock main_content %}

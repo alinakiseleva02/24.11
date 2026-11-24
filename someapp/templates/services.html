@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Услуги{% endblock title %}
+{% block main_content %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Услуга</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for service in page_obj %}
+        <tr>
+            <td>{{service.name}}</td>
+            <td>{{service.price}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Страница: {{page_obj.number}} из {{page_obj.paginator.num_pages}}</p>
+
+{% if page_obj.has_previous %}
+<a href="?page={{page_obj.previous_page_number}}">Назад</a>
+{% endif %}
+
+{% if page_obj.has_next %}
+<a href="?page={{page_obj.next_page_number}}">Дальше</a>
+{% endif %}
+{% endblock main_content%}

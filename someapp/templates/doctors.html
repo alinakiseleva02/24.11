@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Врачи{% endblock title %}
+{% block main_content %}
+<table>
+    <thead>
+        <tr>
+            <th>ФИО</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doctor in page_obj %}
+        <tr>
+            <td>{{ doctor.full_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p>Страница: {{page_obj.number}} из {{page_obj.paginator.num_pages}}</p>
+
+{% if page_obj.has_previous %}
+<a href="?page={{page_obj.previous_page_number}}">Назад</a>
+{% endif %}
+
+{% if page_obj.has_next %}
+<a href="?page={{page_obj.next_page_number}}">Дальше</a>
+{% endif %}
+{% endblock main_content%}
